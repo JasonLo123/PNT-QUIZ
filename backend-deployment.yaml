@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  namespace: pnt-quiz
+  labels:
+    app: backend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: backend-app
+        tier: backend
+    spec:
+      containers:
+        - name: backend-app
+          image: jasonloderick/docker_multi-stage_build:latest
+          imagePullPolicy: Always
